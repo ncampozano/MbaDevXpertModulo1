@@ -47,9 +47,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.AddDatabaseSelector();
 
 builder.Services.AddIdentity<IdentityUser,IdentityRole>()
     .AddRoles<IdentityRole>()
@@ -88,6 +86,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseDbMigrationHelper();
 
 app.UseHttpsRedirection();
 

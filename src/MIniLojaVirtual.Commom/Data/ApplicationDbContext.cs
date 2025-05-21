@@ -10,6 +10,7 @@ namespace MiniLojaVirtual.Commom.Data
             : base(options)
         {
         }
+        
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Vendedor> Vendedor { get; set; }
         public DbSet<Produto> Produto { get; set; }

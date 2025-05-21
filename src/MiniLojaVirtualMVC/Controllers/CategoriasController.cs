@@ -49,7 +49,7 @@ namespace MiniLojaVirtualMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Categoria categoria)
+        public async Task<IActionResult> Create([Bind("Id,Name,Descricao")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace MiniLojaVirtualMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Categoria categoria)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Descricao")] Categoria categoria)
         {
             if (id != categoria.Id)
             {
