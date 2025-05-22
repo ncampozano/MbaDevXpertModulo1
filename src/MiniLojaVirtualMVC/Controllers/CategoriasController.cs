@@ -17,6 +17,7 @@ namespace MiniLojaVirtualMVC.Controllers
         // GET: Categoria
         public async Task<IActionResult> Index()
         {
+            ViewBag.Sucesso = "Listagem bem sucedida!";
             return View(await _context.Categoria.ToListAsync());
         }
 
@@ -55,6 +56,7 @@ namespace MiniLojaVirtualMVC.Controllers
             {
                 _context.Add(categoria);
                 await _context.SaveChangesAsync();
+                TempData["Sucesso"] = "Registro Criado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
@@ -73,6 +75,7 @@ namespace MiniLojaVirtualMVC.Controllers
             {
                 return NotFound();
             }
+            
             return View(categoria);
         }
 
@@ -106,6 +109,7 @@ namespace MiniLojaVirtualMVC.Controllers
                         throw;
                     }
                 }
+                TempData["Sucesso"] = "Registro Alterado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
@@ -141,6 +145,8 @@ namespace MiniLojaVirtualMVC.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["Sucesso"] = "Registro Excluido com sucesso!";
+
             return RedirectToAction(nameof(Index));
         }
 

@@ -1,13 +1,22 @@
 ﻿@model IEnumerable<MiniLojaVirtual.Commom.Model.Produto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Produtos";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["Sucesso"] != null || ViewData["Sucesso"] != null)
+{
+    var mensagem = TempData["Sucesso"] != null ? TempData["Sucesso"] : ViewData["Sucesso"];
+    <div style="padding-top: 15px"></div>
+    <div id=msg_box class="alert alert-success">
+        <h4 ="msgRetorno"> @Html.Raw(mensagem)</h4>
+    </div>
+}
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create"> <span class="fa fa-plus"> </span>Novo</a>
 </p>
 <table class="table">
     <thead>
@@ -55,15 +64,16 @@
                 @Html.DisplayFor(modelItem => item.Estoque)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Id)
+                @Html.DisplayFor(modelItem => item.Categoria.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Vendedor.Id)
+                @Html.DisplayFor(modelItem => item.Vendedor.Nome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+
             </td>
         </tr>
 }

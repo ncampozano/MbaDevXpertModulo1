@@ -22,6 +22,8 @@ namespace MiniLojaVirtualMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Produto.Include(p => p.Categoria).Include(p => p.Vendedor);
+
+            ViewBag.Sucesso = "Listagem bem sucedida!";
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -68,6 +70,8 @@ namespace MiniLojaVirtualMVC.Controllers
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", produto.CategoriaId);
             ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Id", produto.VendedorId);
+            TempData["Sucesso"] = "Registro Criado com sucesso!";
+
             return View(produto);
         }
 
@@ -119,6 +123,7 @@ namespace MiniLojaVirtualMVC.Controllers
                         throw;
                     }
                 }
+                TempData["Sucesso"] = "Registro Alterado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", produto.CategoriaId);
@@ -158,6 +163,8 @@ namespace MiniLojaVirtualMVC.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["Sucesso"] = "Registro Excluido com sucesso!";
+
             return RedirectToAction(nameof(Index));
         }
 
