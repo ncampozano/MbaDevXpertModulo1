@@ -1,66 +1,91 @@
 # Feedback - Avaliação Geral
 
 ## Front End
+
 ### Navegação
   * Pontos positivos:
-    - Possui estrutura MVC com views no projeto MiniLojaVirtualMVC
-    - Separação clara entre MVC e API em projetos distintos
+    - Projeto MVC com estrutura de navegação, views e controllers implementados para autenticação, produtos e categorias.
+
+  * Pontos negativos:
+    - Nenhum.
 
 ### Design
-    - Será avaliado na entrega final
+  - Interface simples, funcional e adequada ao contexto administrativo.
 
 ### Funcionalidade
   * Pontos positivos:
-    - Estrutura básica do projeto MVC está presente
-    - Integração com Identity para autenticação
+    - CRUD implementado para produtos e categorias nas camadas MVC e API.
+    - Auth com ASP.NET Identity presente e funcional nas duas camadas.
+    - Uso de SQLite, migrations automáticas e seed de dados estão corretamente aplicados.
+    - Modelagem das entidades de domínio está correta e coesa com os requisitos.
+
+  * Pontos negativos:
+    - O ID do vendedor é selecionado via drop-down ao invés de capturado do usuário logado, o que compromete a integridade e segurança.
+    - Não há validação para impedir que um vendedor altere produtos de outro.
+    - O registro do vendedor não é feito automaticamente no momento da criação do usuário no MVC (apenas na API).
 
 ## Back End
+
 ### Arquitetura
   * Pontos positivos:
-    - Arquitetura corretamente dividida em 3 camadas: MiniLojaVirtual.Api, MiniLojaVirtual.MVC e MiniLojaVirtual.Common
-    - Estrutura enxuta e coesa, adequada para um CRUD básico
-    - Separação clara entre API e MVC
+    - Três camadas bem separadas: API, MVC e biblioteca comum (`Commom`).
+    - Organização clara e modular.
 
   * Pontos negativos:
-    - Não foram identificados pontos negativos na arquitetura, pois segue o padrão recomendado
+    - Uso de `DataAnnotations` diretamente nas entidades, ao invés de `Fluent API`, que é mais adequado ao EF Core.
+    - Falta do uso de abstrações para não deixar a program.cs muito bagunçada.
 
 ### Funcionalidade
   * Pontos positivos:
-    - Implementação do Entity Framework
-    - Estrutura preparada para autenticação com Identity
+    - As funcionalidades básicas de cadastro, login e gerenciamento estão disponíveis nas duas camadas.
+    - Migrations automáticas e seed operacionalizados.
 
   * Pontos negativos:
-    - Falta de implementação do registro de Vendedor integrado ao Identity no MVC
+    - Lacunas de segurança ao não validar o vendedor autenticado nas operações sensíveis.
 
 ### Modelagem
   * Pontos positivos:
-    - Modelagem mantida simples e anêmica como recomendado
-    - Uso do Entity Framework para persistência  
-
-## Projeto
-### Organização
-  * Pontos positivos:
-    - Solution file (MiniLojaVirtual.sln) na raiz do projeto
-    - Projetos corretamente separados em pastas distintas
-    - Estrutura de pastas organizada e coerente
+    - Entidades coerentes e bem estruturadas.
+    - Associação correta entre Produto, Categoria e Vendedor.
 
   * Pontos negativos:
-    - Falta da pasta src na raiz do projeto
-    - Alguns arquivos que poderiam estar em pastas específicas estão na raiz
+    - Uso de `DataAnnotations` pode limitar a escalabilidade da modelagem.
+
+## Projeto
+
+### Organização
+  * Pontos positivos:
+    - Boa estrutura de diretórios, solution `.sln` presente, projetos bem nomeados.
+    - README.md e FEEDBACK.md disponíveis.
+
+  * Pontos negativos:
+    - Nenhum ponto relevante além dos observados tecnicamente.
 
 ### Documentação
   * Pontos positivos:
-    - README.md presente e bem estruturado
-    - FEEDBACK.md presente no repositório
-    - Documentação inclui instruções de execução e configuração
-    - Menção ao Swagger para documentação da API
+    - Arquivos de documentação estão disponíveis.
+    - Estrutura da documentação compatível com os padrões do curso.
 
 ### Instalação
   * Pontos positivos:
-    - Instruções de instalação presentes no README.md
-    - Configuração do banco de dados documentada
+    - SQLite com seed e migrations automáticas funcionais.
+    - Projeto inicia corretamente sem necessidade de configuração adicional.
 
   * Pontos negativos:
-    - Não foi possível identificar implementação de Seed de dados
-    - Falta de implementação de migrations automáticas no start da aplicação
-    - Uso de SQL Server ao invés de SQLite, o que pode complicar a instalação
+    - Nenhum.
+
+---
+
+# 📊 Matriz de Avaliação de Projetos
+
+| **Critério**                   | **Peso** | **Nota** | **Resultado Ponderado**                  |
+|-------------------------------|----------|----------|------------------------------------------|
+| **Funcionalidade**            | 30%      | 8        | 2,4                                      |
+| **Qualidade do Código**       | 20%      | 8        | 1,6                                      |
+| **Eficiência e Desempenho**   | 20%      | 8        | 1,6                                      |
+| **Inovação e Diferenciais**   | 10%      | 9        | 0,9                                      |
+| **Documentação e Organização**| 10%      | 8        | 0,8                                      |
+| **Resolução de Feedbacks**    | 10%      | 7        | 0,7                                      |
+| **Total**                     | 100%     | -        | **8,0**                                  |
+
+## 🎯 **Nota Final: 8 / 10**
